@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "Refresh",
+  "description": "This extension refreshes tabs.",
+  "version": "1.0",
+
+  "permissions": [
+   "contextMenus",
+   "tabs"
+  ],
+  "background": {
+    "scripts": ["menu.js"]
+  },
+  "icons":{
+  	"16": "icon.png"
+  }
+}
