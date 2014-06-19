@@ -12,7 +12,4 @@
   "background": {
     "scripts": ["menu.js"]
   },
-  "icons":{
-  	"16": "icon.png"
-  }
 }
