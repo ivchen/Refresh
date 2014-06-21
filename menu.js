@@ -30,7 +30,7 @@ function refreshRight(info, tab) {
         var curr = tabs[0].index;
         //reload all tabs to right of current index
         chrome.tabs.query({lastFocusedWindow: true}, function (tabsList){
-          for(var i = curr; i < tabsList.length; i++){
+          for(var i = curr + 1; i < tabsList.length; i++){
             chrome.tabs.reload(tabsList[i].id);
           }
         });
