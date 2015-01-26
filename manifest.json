@@ -13,6 +13,7 @@
     "scripts": ["menu.js"]
   },
   "icons":{
-  	"16": "icon.png"
+    "64": "icon64.png",
+  	"24": "icon24.png"
   }
 }
