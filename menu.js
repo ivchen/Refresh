@@ -1,7 +1,7 @@
 // Create menu items
-chrome.contextMenus.create({"title": "Refresh all", "contexts":["page"],
+chrome.contextMenus.create({"title": "Refresh All", "contexts":["page"],
                                      "onclick": refreshAll});
-chrome.contextMenus.create({"title": "Refresh right", "contexts":["page"],
+chrome.contextMenus.create({"title": "Refresh Right", "contexts":["page"],
                                      "onclick": refreshRight});
 
 //Refresh all tabs in current window
@@ -11,13 +11,14 @@ function refreshAll(info, tab) {
   //console.log("info: " + JSON.stringify(info));
   //console.log("tab: " + JSON.stringify(tab));
 
-  //var tabsList = new Array();
-
   chrome.tabs.query({lastFocusedWindow: true}, function (tabsList){
-    //NOTE: if you have extensions page open, will stop reloading pages up to the ext page.
-    //also, will not print out to console if ext page is reloaded
+    //note: will not print out to console if ext page is reloaded
     for(var i = 0; i < tabsList.length; i++){
-        chrome.tabs.reload(tabsList[i].id);
+          //if extension page is open, refresh extension will stop reload of pages after ext page.
+          if(tabsList[i].url == "chrome://extensions/"){
+            continue;
+          }
+          chrome.tabs.reload(tabsList[i].id);
     }
   });
 }
@@ -31,6 +32,9 @@ function refreshRight(info, tab) {
         //reload all tabs to right of current index
         chrome.tabs.query({lastFocusedWindow: true}, function (tabsList){
           for(var i = curr + 1; i < tabsList.length; i++){
+            if(tabsList[i].url == "chrome://extensions/"){
+              continue;
+            }            
             chrome.tabs.reload(tabsList[i].id);
           }
         });
